@@ -2,16 +2,16 @@
 
 // Create a new date instance dynamically with JS
 let d = new Date();
-let newDate = d.getMonth() + "." + d.getDate() + "." + d.getFullYear();
+let newDate = d.toISOString().slice(0, 10);
 
 const appId = "fff74ca0f4a3cb0085b2f6781d97098d";
 
 // function to get URL
 const getURL = (zipCode, apiKey) =>
-  `https://api.openweathermap.org/data/2.5/weather?zip=${zipCode}&appid=${apiKey}`;
+  `https://api.openweathermap.org/data/2.5/weather?zip=${zipCode}&appid=${apiKey}&units=metric`;
 
 // server
-const server = "http://localhost:3001";
+const server = "http://localhost:3002";
 
 // post data
 const postData = async (url = "", data = {}) => {
@@ -64,9 +64,9 @@ const getWeatherData = async (zip) => {
 
 // update UI
 const updateUI = (res) => {
-  document.getElementById("date").innerText = res.date;
-  document.getElementById("temp").innerText = res.temp;
-  document.getElementById("content").innerText = res.userResponse;
+  document.getElementById("date").innerHTML = res.date;
+  document.getElementById("temp").innerHTML = `${res.temp} C`;
+  document.getElementById("content").innerHTML = res.userResponse;
 };
 
 // get data then submit them to server

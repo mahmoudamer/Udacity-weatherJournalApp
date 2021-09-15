@@ -27,5 +27,5 @@ app.post("/data", (req, res) => {
   res.status(200).send(projectData);
 });
 
-const PORT = 3001;
+const PORT = 3002;
 app.listen(PORT, () => console.log(`listening on http://localhost:${PORT}`));
